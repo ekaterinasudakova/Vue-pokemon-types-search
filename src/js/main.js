@@ -11,6 +11,9 @@ var app = new Vue({
     data: {
       pokemonData: []
     },
+    created: function() {
+        this.doPokeSearch()
+    },
     methods:{
         doPokeSearch: function(){
             axios
@@ -18,15 +21,30 @@ var app = new Vue({
                 .then((response) => {
                     // handle success
                     console.log("pokeapi said: ", response.data);
-                    let pokemonTypesArray = response.data.pokemon;
-                    console.log("pokemonTypesArray: ", pokemonTypesArray);
-                    let pokemonData=[];
+                    this.pokemonData = response.data;
+                    // console.log("pokemonOfTypeArray: ", pokemonOfTypeArray);
+                    // this.pokemonData=[];
                     //need help extracting pokemonData out of this forEach loop
                     //or should this loop be happening in a separate component?
-                    pokemonTypesArray.forEach(pokemon => {
-                        let pokemonData = pokemon.pokemon.name;
-                        console.log('this is pokemonData: ', pokemonData)
-                    });
+                    for (var p in this.pokemonData.pokemon) {
+                        let pokemon = this.pokemonData.pokemon[p];
+                        
+                        if (p > 10) {
+                            return;
+                        }
+                        console.log('this is pokemonData: ', pokemon.pokemon)
+                        // axios call to fetch that pokemon
+                        axios
+                            .get(pokemon.pokemon.url)
+                            .then((response) => {
+                                console.log(response)
+                                Vue.set(pokemon.pokemon, "expanded", response.data)
+                                console.log('this is pokemonData: ', pokemon.pokemon)
+                            })
+                            .catch((err) => {
+                                console.warn(err)
+                            })
+                    };
                     console.log('pokemonData outside loop: ', pokemonData);
                 })
                 .catch((errors) => {

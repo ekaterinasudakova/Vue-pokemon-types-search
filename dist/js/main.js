@@ -1,5 +1,7 @@
 'use strict';
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 console.log('Hello World from app.js! \nChange this message, and make sure it changes in the browser \nto verify that you\'re working in the right files.');
 
 var API_BASE = 'http://circuslabs.net/proxies/pokeapi.co/?';
@@ -9,20 +11,46 @@ var app = new Vue({
     data: {
         pokemonData: []
     },
+    created: function created() {
+        this.doPokeSearch();
+    },
     methods: {
         doPokeSearch: function doPokeSearch() {
+            var _this = this;
+
             axios.get(API_BASE + "type/" + 'fire').then(function (response) {
                 // handle success
                 console.log("pokeapi said: ", response.data);
-                var pokemonTypesArray = response.data.pokemon;
-                console.log("pokemonTypesArray: ", pokemonTypesArray);
-                var pokemonData = [];
+                _this.pokemonData = response.data;
+                // console.log("pokemonOfTypeArray: ", pokemonOfTypeArray);
+                // this.pokemonData=[];
                 //need help extracting pokemonData out of this forEach loop
                 //or should this loop be happening in a separate component?
-                pokemonTypesArray.forEach(function (pokemon) {
-                    var pokemonData = pokemon.pokemon.name;
-                    console.log('this is pokemonData: ', pokemonData);
-                });
+
+                var _loop = function _loop() {
+                    var pokemon = _this.pokemonData.pokemon[p];
+
+                    if (p > 10) {
+                        return {
+                            v: void 0
+                        };
+                    }
+                    console.log('this is pokemonData: ', pokemon.pokemon);
+                    // axios call to fetch that pokemon
+                    axios.get(pokemon.pokemon.url).then(function (response) {
+                        console.log(response);
+                        Vue.set(pokemon.pokemon, "expanded", response.data);
+                        console.log('this is pokemonData: ', pokemon.pokemon);
+                    }).catch(function (err) {
+                        console.warn(err);
+                    });
+                };
+
+                for (var p in _this.pokemonData.pokemon) {
+                    var _ret = _loop();
+
+                    if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
+                };
                 console.log('pokemonData outside loop: ', pokemonData);
             }).catch(function (errors) {
                 console.warn('something went wrong with pokeSearch!', errors);
