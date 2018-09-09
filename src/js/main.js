@@ -20,14 +20,14 @@ var app = new Vue({
                 .get(API_BASE + "type/" + 'fire')
                 .then((response) => {
                     // handle success
-                    console.log("pokeapi said: ", response.data);
-                    this.pokemonData = response.data;
+                    console.log("pokeapi said: ", response.data.pokemon);
+                    this.pokemonData = response.data.pokemon;
                     // console.log("pokemonOfTypeArray: ", pokemonOfTypeArray);
                     // this.pokemonData=[];
                     //need help extracting pokemonData out of this forEach loop
                     //or should this loop be happening in a separate component?
-                    for (var p in this.pokemonData.pokemon) {
-                        let pokemon = this.pokemonData.pokemon[p];
+                    for (var p in this.pokemonData) {
+                        let pokemon = this.pokemonData[p];
                         
                         if (p > 10) {
                             return;
@@ -37,15 +37,15 @@ var app = new Vue({
                         axios
                             .get(pokemon.pokemon.url)
                             .then((response) => {
-                                console.log(response)
+                                console.log('second axios get response: ', response)
                                 Vue.set(pokemon.pokemon, "expanded", response.data)
-                                console.log('this is pokemonData: ', pokemon.pokemon)
+                                console.log('this is new pokemonData: ', pokemon.pokemon)
                             })
                             .catch((err) => {
                                 console.warn(err)
                             })
                     };
-                    console.log('pokemonData outside loop: ', pokemonData);
+
                 })
                 .catch((errors) => {
                     console.warn('something went wrong with pokeSearch!', errors);

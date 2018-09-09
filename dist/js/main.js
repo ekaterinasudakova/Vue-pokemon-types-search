@@ -20,15 +20,15 @@ var app = new Vue({
 
             axios.get(API_BASE + "type/" + 'fire').then(function (response) {
                 // handle success
-                console.log("pokeapi said: ", response.data);
-                _this.pokemonData = response.data;
+                console.log("pokeapi said: ", response.data.pokemon);
+                _this.pokemonData = response.data.pokemon;
                 // console.log("pokemonOfTypeArray: ", pokemonOfTypeArray);
                 // this.pokemonData=[];
                 //need help extracting pokemonData out of this forEach loop
                 //or should this loop be happening in a separate component?
 
                 var _loop = function _loop() {
-                    var pokemon = _this.pokemonData.pokemon[p];
+                    var pokemon = _this.pokemonData[p];
 
                     if (p > 10) {
                         return {
@@ -38,20 +38,19 @@ var app = new Vue({
                     console.log('this is pokemonData: ', pokemon.pokemon);
                     // axios call to fetch that pokemon
                     axios.get(pokemon.pokemon.url).then(function (response) {
-                        console.log(response);
+                        console.log('second axios get response: ', response);
                         Vue.set(pokemon.pokemon, "expanded", response.data);
-                        console.log('this is pokemonData: ', pokemon.pokemon);
+                        console.log('this is new pokemonData: ', pokemon.pokemon);
                     }).catch(function (err) {
                         console.warn(err);
                     });
                 };
 
-                for (var p in _this.pokemonData.pokemon) {
+                for (var p in _this.pokemonData) {
                     var _ret = _loop();
 
                     if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
                 };
-                console.log('pokemonData outside loop: ', pokemonData);
             }).catch(function (errors) {
                 console.warn('something went wrong with pokeSearch!', errors);
             });
