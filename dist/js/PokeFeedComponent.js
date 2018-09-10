@@ -5,6 +5,6 @@ Vue.component('poke-feed', {
     data: function data() {
         return {};
     },
-    template: '\n        <div>\n           pokemon feed:\n           <pokemon v-for="onePokemonObject in pokemonData" :pokemon-object="onePokemonObject"></pokemon>\n        </div>\n    '
+    template: '\n        <div class="pokemon-feed-section">\n           pokemon feed:\n           <pokemon v-for="onePokemonObject in pokemonData" :pokemon-object="onePokemonObject"></pokemon>\n        </div>\n    '
 });
 //# sourceMappingURL=PokeFeedComponent.js.map

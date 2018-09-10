@@ -7,7 +7,7 @@ Vue.component('poke-feed', {
     },
     template:
     `
-        <div>
+        <div class="pokemon-feed-section">
            pokemon feed:
            <pokemon v-for="onePokemonObject in pokemonData" :pokemon-object="onePokemonObject"></pokemon>
         </div>

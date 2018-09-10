@@ -6,9 +6,9 @@ Vue.component('keyword-input', {
     },
     template:
     `
-        <div>
+        <div class="input-section">
             <input name="keyword" type="text">
-            <button>Go</button>
+            <button class="go-button">Go</button>
         </div>
     `
 })

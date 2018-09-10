@@ -24,8 +24,22 @@ TABLE OF CONTENTS:
 }
 
 body {
-	background: #ccc;
-	
+	background: linear-gradient(132deg, #d2baea, #8c96ed);
+	background-size: 900% 900%;
+	animation: bg-purp 8s ease infinite;
+
+	@keyframes bg-purp { 
+		0%{background-position:67% 0%}
+		50%{background-position:34% 10%}
+		100%{background-position:67% 0%}
+	}	
+	font-family: 'Hind Madurai', sans-serif;
+}
+h1{
+	font-family: 'Delius Unicase', cursive;
+	font-size: 3em;
+	text-align: center;
+	padding: 1em 0;
 }
 
 
@@ -33,7 +47,53 @@ body {
 
 /* 2. Content ================================= */
 
-input[name='keyword']{
-	font-size: 3em;
-	width: 100%;
+.input-section{
+	display: flex;
+	margin: 0 .25em;
+
+	input[name='keyword']{
+		border-radius: 0.25em;
+		border: #22222465 solid 1px;
+		font-size: 3em;
+		flex-grow: 2;
+		margin-right: .25em;
+	}
+	.go-button{
+		flex-grow: 1;
+		border-radius: .5em;
+		font-size: 1.2em;
+		padding: 1em 2em;
+	}
+}
+
+.pokemon-card{
+	border: 1px solid #fff;
+	max-width: 30%;
+	border-radius: .5em;
+
+	.card-header{
+		display: flex;
+		background-color: #ffffff12;
+		font-family: 'Oregano', cursive;
+		font-size: 2em;
+		padding: .5em .25em;
+		
+		.card-name{
+			flex-grow: 6;
+		}
+		.card-id{
+			flex-grow: 1;
+		}
+	}
+	.card-main{
+		background-color: rgba(255, 255, 255, 0.48);
+		font-family: 'Hind Madurai', sans-serif;
+		display: flex;
+		justify-content: center;
+		padding: 5em 2.5em;
+		img{
+			border: 1px solid rgba(255, 255, 255, 0.28);
+			transform: scale(2);
+		}
+	}
 }

@@ -15,10 +15,10 @@ var app = new Vue({
         this.doPokeSearch();
     },
     methods: {
-        doPokeSearch: function doPokeSearch() {
+        doPokeSearch: function doPokeSearch(keyword) {
             var _this = this;
 
-            axios.get(API_BASE + "type/" + 'fire').then(function (response) {
+            axios.get(API_BASE + "type/" + "fire").then(function (response) {
                 // handle success
                 console.log("pokeapi said: ", response.data.pokemon);
                 _this.pokemonData = response.data.pokemon;
