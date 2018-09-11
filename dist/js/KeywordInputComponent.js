@@ -1,9 +1,17 @@
 'use strict';
 
 Vue.component('keyword-input', {
+    props: ['default-keyword'],
     data: function data() {
-        return {};
+        return {
+            enteredKeyword: this.defaultkeyword
+        };
     },
-    template: '\n        <div class="input-section">\n            <input name="keyword" type="text">\n            <button class="go-button">Go</button>\n        </div>\n    '
+    watch: {
+        enteredKeyword: function enteredKeyword() {
+            this.$emit("typestype");
+        }
+    },
+    template: '\n        <div class="input-section">\n            <input name="keyword" type="text" v-model="enteredKeyword">\n            <button class="go-button">Go</button>\n        </div>\n    '
 });
 //# sourceMappingURL=KeywordInputComponent.js.map

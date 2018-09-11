@@ -119,10 +119,19 @@ h1 {
 	padding: 1em 2em;
 }
 
+.pokemon-feed-section {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding: 3em 2em;
+}
+
 .pokemon-card {
+	background-image: url(../img/what-the-hex.png);
 	border: 1px solid #fff;
 	max-width: 30%;
 	border-radius: .5em;
+	margin-bottom: 1em;
 }
 
 .pokemon-card .card-header {
@@ -146,7 +155,7 @@ h1 {
 	font-family: 'Hind Madurai', sans-serif;
 	display: flex;
 	justify-content: center;
-	padding: 5em 2.5em;
+	padding: 5em 4em;
 }
 
 .pokemon-card .card-main img {

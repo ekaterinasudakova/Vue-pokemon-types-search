@@ -9,15 +9,22 @@ const API_BASE = 'http://circuslabs.net/proxies/pokeapi.co/?';
 var app = new Vue({
     el: '#app',
     data: {
-      pokemonData: []
+      pokemonData: [],
+      keyword: "dark"
     },
     created: function() {
         this.doPokeSearch()
     },
+    watch: {
+        hashtag: function(){
+            this.doPokeSearch()
+        }
+        
+    },
     methods:{
         doPokeSearch: function(keyword){
             axios
-                .get(API_BASE + "type/" + "fire")
+                .get(API_BASE + "type/" + this.keyword)
                 .then((response) => {
                     // handle success
                     console.log("pokeapi said: ", response.data.pokemon);

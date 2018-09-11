@@ -1,5 +1,5 @@
 Vue.component('status-bar', {
-    props: ['pokemon-data'],
+    props: ['keyword','pokemon-data'],
     data: function(){
         return{
         
@@ -8,7 +8,7 @@ Vue.component('status-bar', {
     template:
     `
         <div>
-           Showing 14 fire type poekmon
+           Showing 10 {{keyword}} type pokemon
         </div>
     `
 })

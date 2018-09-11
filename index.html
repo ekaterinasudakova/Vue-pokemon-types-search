@@ -13,9 +13,9 @@
 	<body>
 		<h1>Poke-type search</h1>
 		<div id="app">
-			<keyword-input></keyword-input>
+			<keyword-input v-on:typestype="" v-bind:default-keyword="keyword"></keyword-input>
 			<br>
-			<status-bar v-bind:pokemon-data="pokemonData"></status-bar>
+			<status-bar v-bind:keyword="keyword" v-bind:pokemon-data="pokemonData"></status-bar>
 			<poke-feed v-bind:pokemon-data="pokemonData"></poke-feed>
 			
 		</div>
