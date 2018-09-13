@@ -16,13 +16,21 @@ var app = new Vue({
         this.doPokeSearch()
     },
     watch: {
-        hashtag: function(){
+        keyword: _.debounce(function() {
             this.doPokeSearch()
-        }
+        }, 1000)
         
     },
     methods:{
+        newKeywordRecievedFromChildComponent: function(newKeyword){
+			console.log("I heard", newKeyword)
+			this.keyword = newKeyword;
+		},
         doPokeSearch: function(keyword){
+            console.log("doing poke search");
+
+            this.pokemonData = []
+
             axios
                 .get(API_BASE + "type/" + this.keyword)
                 .then((response) => {
@@ -44,9 +52,9 @@ var app = new Vue({
                         axios
                             .get(pokemon.pokemon.url)
                             .then((response) => {
-                                console.log('second axios get response: ', response)
+                                // console.log('second axios get response: ', response)
                                 Vue.set(pokemon.pokemon, "expanded", response.data)
-                                console.log('this is new pokemonData: ', pokemon.pokemon)
+                                // console.log('this is new pokemonData: ', pokemon.pokemon)
                             })
                             .catch((err) => {
                                 console.warn(err)

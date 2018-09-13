@@ -13,13 +13,15 @@
 	<body>
 		<h1>Poke-type search</h1>
 		<div id="app">
-			<keyword-input v-on:typestype="" v-bind:default-keyword="keyword"></keyword-input>
+			<keyword-input v-on:typestype="newKeywordRecievedFromChildComponent" v-bind:default-keyword="keyword"></keyword-input>
 			<br>
 			<status-bar v-bind:keyword="keyword" v-bind:pokemon-data="pokemonData"></status-bar>
 			<poke-feed v-bind:pokemon-data="pokemonData"></poke-feed>
 			
 		</div>
 
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 		<script src="dist/js/KeywordInputComponent.js"></script>

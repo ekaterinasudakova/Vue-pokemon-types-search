@@ -9,7 +9,7 @@ Vue.component('keyword-input', {
     },
     watch: {
         enteredKeyword: function enteredKeyword() {
-            this.$emit("typestype");
+            this.$emit("typestype", this.enteredKeyword);
         }
     },
     template: '\n        <div class="input-section">\n            <input name="keyword" type="text" v-model="enteredKeyword">\n            <button class="go-button">Go</button>\n        </div>\n    '

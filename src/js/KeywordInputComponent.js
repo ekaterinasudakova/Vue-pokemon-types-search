@@ -7,7 +7,7 @@ Vue.component('keyword-input', {
     },
     watch:{
         enteredKeyword: function (){
-            this.$emit("typestype")
+            this.$emit("typestype",this.enteredKeyword)
         }
     },
     template:
